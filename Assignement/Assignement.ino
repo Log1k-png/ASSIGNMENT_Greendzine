@@ -3,6 +3,8 @@
 #define LED LED_BUILTIN
 #define TEMP_SENSOR_PIN A0
 
+#define TEMP_THRESHOLD 30.0f
+
 LM35 tempProbe(TEMP_SENSOR_PIN);
 
 void setBlinkFast(){
@@ -41,7 +43,7 @@ ISR(TIMER1_COMPA_vect){ //ISR of timer compare
 }
 
 void loop(){
-  if(tempProbe.cel() > 30){
+  if(tempProbe.cel() > TEMP_THRESHOLD){
     setBlinkSlow();
   }
   else{
